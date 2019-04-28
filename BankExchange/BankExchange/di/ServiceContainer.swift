@@ -9,9 +9,18 @@
 import Foundation
 
 protocol IServiceContainer {
-  
+    var currencyManager: ICurrencyManager {get }
 }
 
 class ServiceContainer: IServiceContainer {
-   
+    private var _currencyManager: ICurrencyManager?
+    
+    var currencyManager: ICurrencyManager {
+       get   {
+            if (_currencyManager == nil){
+                _currencyManager = CurrencyManager()
+            }
+            return _currencyManager!
+        }
+    }
 }

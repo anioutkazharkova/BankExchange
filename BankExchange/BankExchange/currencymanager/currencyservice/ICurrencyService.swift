@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ICurrencyService {
-    
+    func getCurrentRates(completion:@escaping(ContentResponse<BaseRate>)->Void)
 }

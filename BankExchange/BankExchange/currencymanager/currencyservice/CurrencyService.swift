@@ -12,14 +12,8 @@ class CurrencyService: ICurrencyService {
      private weak var networkService = DI.container.networkService
     
     
-    func getCurrentRates() {
+    func getCurrentRates(completion:@escaping(ContentResponse<BaseRate>)->Void) {
         let url = Requests.latest
-        self.networkService?.request(url: url.rawValue, parameters: [:], method: .get){ [weak self]
-            (result: ContentResponse<BaseRate>) in
-            if let content = result.content {
-                var rate = content
-            }
-            
-        }
+        self.networkService?.request(url: url.rawValue, parameters: [:], method: .get,completion:  completion)
     }
 }

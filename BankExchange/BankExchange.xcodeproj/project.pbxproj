@@ -26,6 +26,14 @@
 		63E7E969227603F0007A9578 /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E95E227603F0007A9578 /* NetworkConfiguration.swift */; };
 		63E7E96A227603F0007A9578 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E95F227603F0007A9578 /* NetworkService.swift */; };
 		63E7E96B227603F0007A9578 /* INetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E960227603F0007A9578 /* INetworkService.swift */; };
+		63E7E96E22760D33007A9578 /* ICurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E96D22760D33007A9578 /* ICurrencyManager.swift */; };
+		63E7E97022760D3D007A9578 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E96F22760D3D007A9578 /* CurrencyManager.swift */; };
+		63E7E972227614D1007A9578 /* ExchangeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E971227614D1007A9578 /* ExchangeItem.swift */; };
+		63E7E97622761692007A9578 /* IExchangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E97522761692007A9578 /* IExchangePresenter.swift */; };
+		63E7E978227616B6007A9578 /* ExchangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E977227616B6007A9578 /* ExchangePresenter.swift */; };
+		63E7E97C22761A5E007A9578 /* ExchangeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E97A22761A5E007A9578 /* ExchangeVC.swift */; };
+		63E7E97D22761A5E007A9578 /* ExchangeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E7E97B22761A5E007A9578 /* ExchangeVC.xib */; };
+		63E7E97F22761A71007A9578 /* IExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7E97E22761A71007A9578 /* IExchangeView.swift */; };
 		BC3CBDBF8DCE3B766D123003 /* Pods_BankExchange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8D6EE8D9087F81EDB5427C /* Pods_BankExchange.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +60,14 @@
 		63E7E95E227603F0007A9578 /* NetworkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		63E7E95F227603F0007A9578 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		63E7E960227603F0007A9578 /* INetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INetworkService.swift; sourceTree = "<group>"; };
+		63E7E96D22760D33007A9578 /* ICurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICurrencyManager.swift; sourceTree = "<group>"; };
+		63E7E96F22760D3D007A9578 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
+		63E7E971227614D1007A9578 /* ExchangeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeItem.swift; sourceTree = "<group>"; };
+		63E7E97522761692007A9578 /* IExchangePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IExchangePresenter.swift; sourceTree = "<group>"; };
+		63E7E977227616B6007A9578 /* ExchangePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangePresenter.swift; sourceTree = "<group>"; };
+		63E7E97A22761A5E007A9578 /* ExchangeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeVC.swift; sourceTree = "<group>"; };
+		63E7E97B22761A5E007A9578 /* ExchangeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeVC.xib; sourceTree = "<group>"; };
+		63E7E97E22761A71007A9578 /* IExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IExchangeView.swift; sourceTree = "<group>"; };
 		7C8D6EE8D9087F81EDB5427C /* Pods_BankExchange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BankExchange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F250B88909B9B115615F36 /* Pods-BankExchange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankExchange.release.xcconfig"; path = "Pods/Target Support Files/Pods-BankExchange/Pods-BankExchange.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +113,7 @@
 		63E7E9182275FC18007A9578 /* BankExchange */ = {
 			isa = PBXGroup;
 			children = (
+				63E7E9732276161B007A9578 /* sources */,
 				63E7E951227603F0007A9578 /* di */,
 				63E7E956227603F0007A9578 /* network */,
 				63E7E94222760223007A9578 /* currencymanager */,
@@ -116,6 +133,7 @@
 			children = (
 				63E7E93E2275FFEF007A9578 /* BaseRate.swift */,
 				63E7E9402276005D007A9578 /* Currency.swift */,
+				63E7E971227614D1007A9578 /* ExchangeItem.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -124,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				63E7E9432276022E007A9578 /* currencyservice */,
+				63E7E96D22760D33007A9578 /* ICurrencyManager.swift */,
+				63E7E96F22760D3D007A9578 /* CurrencyManager.swift */,
 			);
 			path = currencymanager;
 			sourceTree = "<group>";
@@ -183,6 +203,34 @@
 				63E7E95E227603F0007A9578 /* NetworkConfiguration.swift */,
 			);
 			path = networkconfiguration;
+			sourceTree = "<group>";
+		};
+		63E7E9732276161B007A9578 /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				63E7E97922761A48007A9578 /* view */,
+				63E7E97422761624007A9578 /* presenter */,
+			);
+			path = sources;
+			sourceTree = "<group>";
+		};
+		63E7E97422761624007A9578 /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+				63E7E97522761692007A9578 /* IExchangePresenter.swift */,
+				63E7E977227616B6007A9578 /* ExchangePresenter.swift */,
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
+		63E7E97922761A48007A9578 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				63E7E97A22761A5E007A9578 /* ExchangeVC.swift */,
+				63E7E97B22761A5E007A9578 /* ExchangeVC.xib */,
+				63E7E97E22761A71007A9578 /* IExchangeView.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		AE75C9BAE2409BC439825E79 /* Pods */ = {
@@ -257,6 +305,7 @@
 				63E7E9242275FC1A007A9578 /* LaunchScreen.storyboard in Resources */,
 				63E7E9212275FC1A007A9578 /* Assets.xcassets in Resources */,
 				63E7E91F2275FC18007A9578 /* Main.storyboard in Resources */,
+				63E7E97D22761A5E007A9578 /* ExchangeVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,17 +368,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				63E7E962227603F0007A9578 /* DI.swift in Sources */,
+				63E7E978227616B6007A9578 /* ExchangePresenter.swift in Sources */,
 				63E7E93F2275FFEF007A9578 /* BaseRate.swift in Sources */,
 				63E7E964227603F0007A9578 /* DIContainer.swift in Sources */,
+				63E7E96E22760D33007A9578 /* ICurrencyManager.swift in Sources */,
 				63E7E94722760256007A9578 /* CurrencyService.swift in Sources */,
 				63E7E968227603F0007A9578 /* INetworkConfiguration.swift in Sources */,
+				63E7E97F22761A71007A9578 /* IExchangeView.swift in Sources */,
 				63E7E961227603F0007A9578 /* ServiceContainer.swift in Sources */,
 				63E7E9452276023E007A9578 /* ICurrencyService.swift in Sources */,
 				63E7E9412276005D007A9578 /* Currency.swift in Sources */,
 				63E7E91C2275FC18007A9578 /* ViewController.swift in Sources */,
+				63E7E97C22761A5E007A9578 /* ExchangeVC.swift in Sources */,
+				63E7E97022760D3D007A9578 /* CurrencyManager.swift in Sources */,
 				63E7E96A227603F0007A9578 /* NetworkService.swift in Sources */,
 				63E7E966227603F0007A9578 /* Requests.swift in Sources */,
+				63E7E972227614D1007A9578 /* ExchangeItem.swift in Sources */,
 				63E7E969227603F0007A9578 /* NetworkConfiguration.swift in Sources */,
+				63E7E97622761692007A9578 /* IExchangePresenter.swift in Sources */,
 				63E7E91A2275FC18007A9578 /* AppDelegate.swift in Sources */,
 				63E7E96B227603F0007A9578 /* INetworkService.swift in Sources */,
 				63E7E965227603F0007A9578 /* ContentResponse.swift in Sources */,

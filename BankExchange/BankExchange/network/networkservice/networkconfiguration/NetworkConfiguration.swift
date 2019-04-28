@@ -11,7 +11,6 @@ import UIKit
 class NetworkConfiguration: INetworkConfiguration {
 
     private let apiUrl = "https://api.exchangeratesapi.io/"
-   // private let apiKey = "5b86b7593caa4f009fea285cc74129e2"
 
     func getHeaders() -> [String: String] {
         return ["Content-Type": "application/json"]
