@@ -108,3 +108,9 @@ extension ExchangeSource : TextChangedDelegate{
     }
 }
 
+extension ExchangeSource : UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let index = scrollView.contentOffset.x/(UIScreen.main.bounds.width - 40)
+        delegate?.selectedItem(index: Int(index), tag: tag)
+    }
+}
