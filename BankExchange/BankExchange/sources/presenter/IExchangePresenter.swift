@@ -10,5 +10,7 @@ import Foundation
 
 protocol IExchangePresenter {
     var view: IExchangeView? {get set}
-    func makeExchange(from: Currency, to: Currency, amount: Double) 
+      func start()
+    func stop()
+     func makeExchange(from: Currency, to: Currency, amount: Double) 
 }

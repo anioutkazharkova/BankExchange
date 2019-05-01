@@ -12,7 +12,13 @@ class CurrencyManager : ICurrencyManager {
     weak var delegate: CurrencyManagerDelegate?
     
     private var timer: Timer?
-    private var currentRateData: BaseRate?
+    private var _currentRateData: BaseRate?
+    
+    var currentRateData: BaseRate? {
+        get {
+            return self._currentRateData
+        }
+    }
     
     func start() {
         startTimer()
@@ -40,27 +46,12 @@ class CurrencyManager : ICurrencyManager {
    @objc private func requestRate() {
     CurrencyService().getCurrentRates { [weak self] (result: ContentResponse<BaseRate>) in
         if let data  = result.content {
-            self?.currentRateData = data
+            self?._currentRateData = data
+            self?.delegate?.rateChanged()
         }
     }
     }
     
-    func rateFromBase(currency: Currency) -> Double {
-        if let rate = currentRateData {
-            if (currency == rate.base) {
-                return 1
-            } else {
-                return rate.rates[currency] ?? 0.0
-            }
-        }
-        return 0.0
-    }
     
-    func rate(from currency: Currency, to: Currency) -> Double {
-        let sourceRate = rateFromBase(currency: currency)
-        let distanceRate = rateFromBase(currency: to)
-        
-        return sourceRate > 0 ?  distanceRate/sourceRate : 0.0
-    }
     
 }

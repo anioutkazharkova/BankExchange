@@ -29,6 +29,7 @@ class ExchangePresenter: IExchangePresenter {
     }
     
     func start() {
+        self.view?.loadData(items: exchangeData)
         currencyManager?.delegate = self
         currencyManager?.start()
     }
@@ -38,22 +39,24 @@ class ExchangePresenter: IExchangePresenter {
         currencyManager?.stop()
     }
     
+ 
     func makeExchange(from: Currency, to: Currency, amount: Double) {
-        let rate = currencyManager?.rate(from: from, to: to) ?? 0.0
+        let rate = RateHelper.shared.rate(from: from, to: to)
         let differAmount = amount*rate
         
         let fromItem = exchangeData.filter{$0.currency == from}.first
         let toItem = exchangeData.filter{$0.currency == to}.first
         if let fromItem = fromItem, let toItem = toItem {
-            if (fromItem.amount < differAmount) {
+            if (fromItem.amount < amount) {
                 //show that is not enough
             } else {
-                fromItem.changeAmount(amount: -differAmount)
+                fromItem.changeAmount(amount: -amount)
                 toItem.changeAmount(amount: differAmount)
                 
                 view?.showChanged(fromItem: fromItem, toItem: toItem)
             }
         }
+        self.view?.loadData(items: exchangeData)
         
         
     }
@@ -61,6 +64,13 @@ class ExchangePresenter: IExchangePresenter {
 
 extension ExchangePresenter : CurrencyManagerDelegate {
     func rateChanged() {
-       
+        if let rates = currencyManager?.currentRateData?.rates {
+        for item in self.exchangeData {
+            item.baseRate = rates[item.currency] ?? 1.0
+        }
+        }
+        
+        self.view?.loadData(items: self.exchangeData)
     }
+    
 }

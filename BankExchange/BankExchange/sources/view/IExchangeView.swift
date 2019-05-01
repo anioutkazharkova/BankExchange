@@ -12,4 +12,6 @@ protocol IExchangeView :class {
     func showChanged(fromItem: ExchangeItem, toItem: ExchangeItem)
     
     func updateSelected()
+    
+    func loadData(items:[ExchangeItem])
 }

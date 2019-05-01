@@ -11,11 +11,14 @@ import Foundation
 class ExchangeItem: NSObject {
     var currency: Currency = .EUR
     var amount: Double = 100.0
+    var baseRate: Double = 1.0
+   // var currentRate: Double = 1.0 
     
     
-    init(currency: Currency, amount: Double){
+    init(currency: Currency, amount: Double, _ rate: Double = 1.0){
         self.currency = currency
         self.amount = amount
+        self.baseRate = rate
     }
     
     func changeAmount(amount: Double){
