@@ -10,5 +10,16 @@ import Foundation
 
 enum Currency : String, Codable{
     case EUR, USD, GBP
+    
+    var symbol: String {
+        switch self {
+        case .EUR:
+            return "€"
+        case .USD:
+            return "$"
+        case .GBP:
+            return "£"
+        }
+    }
 }
 

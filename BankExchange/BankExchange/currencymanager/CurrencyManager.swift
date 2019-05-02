@@ -43,15 +43,12 @@ class CurrencyManager : ICurrencyManager {
         timer = nil
     }
     
-   @objc private func requestRate() {
-    CurrencyService().getCurrentRates { [weak self] (result: ContentResponse<BaseRate>) in
-        if let data  = result.content {
-            self?._currentRateData = data
-            self?.delegate?.rateChanged()
+    @objc private func requestRate() {
+        CurrencyService().getCurrentRates { [weak self] (result: ContentResponse<BaseRate>) in
+            if let data  = result.content {
+                self?._currentRateData = data
+                self?.delegate?.rateChanged()
+            }
         }
     }
-    }
-    
-    
-    
 }

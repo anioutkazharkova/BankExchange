@@ -9,9 +9,12 @@
 import Foundation
 
 protocol IExchangeView :class {
-    func showChanged(fromItem: ExchangeItem, toItem: ExchangeItem)
     
-    func updateSelected()
+    func loadSourceData(items:[ExchangeCardItem])
     
-    func loadData(items:[ExchangeItem])
+    func loadDistanceData(items:[ExchangeCardItem])
+    
+    func showInfo(message: String)
+    
+    func setTitle(title: String)
 }

@@ -16,10 +16,6 @@ protocol ICurrencyManager : class {
     func start()
     
     func stop()
-    
-   // func rateFromBase(currency: Currency)->Double
-    
-   // func rate(from currency: Currency, to: Currency)->Double
 }
 
 

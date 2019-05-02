@@ -19,33 +19,14 @@ class ExchangeSource : NSObject, UICollectionViewDelegate, UICollectionViewDataS
     
     var tag: Int = 0
     weak var delegate: ItemSelectedDelegate?
-    private var currentExchangeSum:Double = 0.0
+    var currentExchangeSum:Double = 0.0
     var sourceMode:Bool = true
-    var selectedValue: String = ""
-    private var isToReset = false
     
-    func setNeedResetFields() {
-        isToReset = true
-        currentExchangeSum = 0
-        selectedValue = ""
-    }
-    
-    var pairSelectedIndex: Int = 0{
-        didSet {
-            self.pairSelected = items[pairSelectedIndex]
-        }
-    }
-    private var pairSelected:ExchangeItem?
     var selectedIndex:Int = 0
-    var selectedItem: ExchangeItem {
-        get {
-            return items[selectedIndex]
-        }
-    }
-    var items = [ExchangeItem]()
+    var items = [ExchangeCardItem]()
     
-    func updateItems(items: [ExchangeItem]) {
-        self.items = [ExchangeItem]()
+    func updateItems(items: [ExchangeCardItem]) {
+        self.items = [ExchangeCardItem]()
         self.items.append(contentsOf: items)
     }
     
@@ -54,22 +35,11 @@ class ExchangeSource : NSObject, UICollectionViewDelegate, UICollectionViewDataS
             return UICollectionViewCell()
         }
         let isSelected = indexPath.row == selectedIndex
-        cell.setupItem(item: items[indexPath.row], distanceSource: self.pairSelected?.currency ?? .EUR,isSelected: isSelected)
-        cell.setEditMode(enabled: sourceMode)
+            cell.setEditMode(enabled: sourceMode)
+        cell.setupItem(item: items[indexPath.row], isSelected: isSelected)
+    
         cell.textDelegate  = isSelected ? self : nil
         
-        if isToReset {
-            cell.updateForSelected("")
-            if indexPath.row == items.count - 1 {
-                isToReset = false 
-            }
-        }else {
-        if !sourceMode && isSelected{
-            cell.updateForSelected(selectedValue)
-        } else if !isSelected {
-            cell.updateForSelected("")
-        }
-        }
         return cell
     }
     
@@ -86,14 +56,6 @@ class ExchangeSource : NSObject, UICollectionViewDelegate, UICollectionViewDataS
         return 1
     }
     
-    func getExchangeSum()->Double {
-        return  self.currentExchangeSum
-    }
-    
-    func getExchaneSumDist()->Double {
-        return  self.currentExchangeSum*RateHelper.shared.rate(from: selectedItem.currency, to: pairSelected?.currency ?? .EUR)
-    }
-    
 }
 
 extension ExchangeSource : TextChangedDelegate{
@@ -101,9 +63,9 @@ extension ExchangeSource : TextChangedDelegate{
         guard !value.isEmpty else {
             return
         }
-        self.currentExchangeSum = Double(value) ?? 0.0
+        self.currentExchangeSum = value.getAmount()
         if sourceMode {
-            delegate?.valueChanged(value:self.getExchaneSumDist())
+            delegate?.valueChanged(value:currentExchangeSum)
         }
     }
 }
@@ -111,6 +73,7 @@ extension ExchangeSource : TextChangedDelegate{
 extension ExchangeSource : UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = scrollView.contentOffset.x/(UIScreen.main.bounds.width - 40)
-        delegate?.selectedItem(index: Int(index), tag: tag)
+        selectedIndex = Int(index)
+        delegate?.selectedItem(index: selectedIndex, tag: tag)
     }
 }

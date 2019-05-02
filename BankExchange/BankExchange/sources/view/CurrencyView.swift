@@ -54,26 +54,18 @@ class CurrencyView: UIView {
         return view
     }
     
-    func setInfo(item: ExchangeItem, distanceCurrency: Currency? = nil){
-        self.currencyLabel?.text = item.currency.rawValue
-        self.amountLabel?.text = String(format:"You have: %.2f",item.amount)
-        let rate = self.updateRate(sourceCurrency: item.currency, distanceCurrency: distanceCurrency)
-        //item.currentRate = rate 
-        self.rateInfoLabel?.text = String(format:"1 = %.2f",rate)
+    func setInfo(item: ExchangeCardItem){
+        let symbol = (item.exchangeItem?.currency ?? .EUR).symbol
+        self.currencyLabel?.text = (item.exchangeItem?.currency ?? .EUR).rawValue
+        self.amountLabel?.text = item.amountInfo()
+        self.rateInfoLabel?.text = item.rateInfo()
     }
     
-    func updateRate(sourceCurrency: Currency, distanceCurrency: Currency? = nil ) -> Double{
-        var rate: Double = 0
-        if let distance = distanceCurrency {
-            rate = RateHelper.shared.rate(from: sourceCurrency, to: distance)
-        } else {
-            rate = RateHelper.shared.rateFromBase(currency: sourceCurrency)
-        }
-        return rate
-        
-    }
     
     @IBAction func valueChanged(_ sender: Any) {
+       
         textDelegate?.textChanged(value: valueField?.text ?? "")
+        let valueString = valueField?.text?.getValueString() ?? ""
+        self.valueField?.text = valueString
     }
 }

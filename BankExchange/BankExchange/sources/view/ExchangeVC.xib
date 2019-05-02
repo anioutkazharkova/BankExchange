@@ -35,8 +35,8 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3tR-WC-zUL">
-                    <rect key="frame" x="20" y="447" width="335" height="200"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3tR-WC-zUL">
+                    <rect key="frame" x="20" y="300" width="335" height="200"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="qAD-BQ-def"/>
@@ -49,14 +49,14 @@
                     </collectionViewFlowLayout>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CVV-RD-AdW" secondAttribute="trailing" constant="20" id="1sG-SV-PLx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3tR-WC-zUL" secondAttribute="trailing" constant="20" id="Mcz-ll-jpU"/>
                 <constraint firstItem="3tR-WC-zUL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="awq-1m-qmE"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3tR-WC-zUL" secondAttribute="bottom" constant="70" id="fbh-tU-6Fr"/>
                 <constraint firstItem="CVV-RD-AdW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="pYG-vi-oq0"/>
                 <constraint firstItem="CVV-RD-AdW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="t3E-u9-HGU"/>
+                <constraint firstItem="3tR-WC-zUL" firstAttribute="top" secondItem="CVV-RD-AdW" secondAttribute="bottom" constant="50" id="uPX-aK-caE"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

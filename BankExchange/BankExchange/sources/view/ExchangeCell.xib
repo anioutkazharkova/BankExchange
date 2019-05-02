@@ -20,19 +20,17 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1e-7w-5gq" customClass="CurrencyView" customModule="BankExchange" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                        <rect key="frame" x="10" y="10" width="355" height="180"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="200" id="Wnb-Bt-snH"/>
-                        </constraints>
                     </view>
                 </subviews>
             </view>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="B1e-7w-5gq" secondAttribute="trailing" id="IYg-OA-FFa"/>
-                <constraint firstAttribute="bottom" secondItem="B1e-7w-5gq" secondAttribute="bottom" id="hgY-Dz-D3s"/>
-                <constraint firstItem="B1e-7w-5gq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="qKg-nX-3Xa"/>
-                <constraint firstItem="B1e-7w-5gq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="x8c-S7-664"/>
+                <constraint firstAttribute="trailing" secondItem="B1e-7w-5gq" secondAttribute="trailing" constant="10" id="IYg-OA-FFa"/>
+                <constraint firstAttribute="bottom" secondItem="B1e-7w-5gq" secondAttribute="bottom" constant="10" id="hgY-Dz-D3s"/>
+                <constraint firstItem="B1e-7w-5gq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="qKg-nX-3Xa"/>
+                <constraint firstItem="B1e-7w-5gq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="x8c-S7-664"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>

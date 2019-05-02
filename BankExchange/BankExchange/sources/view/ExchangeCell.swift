@@ -11,6 +11,7 @@ import UIKit
 class ExchangeCell: UICollectionViewCell {
     
     static let cellId = "ExchangeCell"
+    var editMode: Bool = true
     
     weak var textDelegate: TextChangedDelegate? {
         didSet {
@@ -27,21 +28,20 @@ class ExchangeCell: UICollectionViewCell {
     }
     
     
-    func setupItem(item: ExchangeItem, distanceSource:Currency, isSelected: Bool = false) {
-        self.currencyView?.setInfo(item: item,distanceCurrency: distanceSource)
+    func setupItem(item: ExchangeCardItem,isSelected: Bool = false) {
+        self.currencyView?.setInfo(item: item)
         if (isSelected) {
             currencyView?.valueField?.delegate = self
+            currencyView?.valueField?.text = item.sumValue
+            
         }else {
-            currencyView?.valueField?.text = nil
+            currencyView?.valueField?.text = ""
             currencyView?.valueField?.delegate = nil
         }
     }
     
-    func updateForSelected(_ value: String){
-        currencyView?.valueField?.text = value 
-    }
-    
     func setEditMode(enabled: Bool) {
+        editMode = enabled
         currencyView?.valueField?.isEnabled = enabled
     }
     

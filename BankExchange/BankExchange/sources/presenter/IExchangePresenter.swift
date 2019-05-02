@@ -12,5 +12,8 @@ protocol IExchangePresenter {
     var view: IExchangeView? {get set}
       func start()
     func stop()
-     func makeExchange(from: Currency, to: Currency, amount: Double) 
+     func makeExchange(amount: Double)
+    func selectSource(index: Int)
+    func selectDistance(index: Int)
+    func changeAmount(amount: Double)
 }

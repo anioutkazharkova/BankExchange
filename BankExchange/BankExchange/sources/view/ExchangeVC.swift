@@ -10,13 +10,14 @@ import UIKit
 
 class ExchangeVC: UIViewController {
     
+    private var presenter: IExchangePresenter?
+    
     @IBOutlet weak var sourceCurrencyList: UICollectionView!
     @IBOutlet weak var distanceCurrencyList: UICollectionView!
     
     var sourceAdapter: ExchangeSource?
     var distanceAdapter: ExchangeSource?
     
-    private var presenter: IExchangePresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,21 +34,9 @@ class ExchangeVC: UIViewController {
         distanceCurrencyList?.register(UINib(nibName: ExchangeCell.cellId, bundle: nil), forCellWithReuseIdentifier: ExchangeCell.cellId)
     }
     
-    func setMenu() {
-        let menu = UIBarButtonItem(title: "Exchange", style: .plain, target: self, action: #selector(processExchange))
-        self.navigationItem.leftBarButtonItem = menu
-    }
-    
-    @objc func processExchange() {
-        let sum = sourceAdapter?.getExchangeSum()
-       presenter?.makeExchange(from: sourceAdapter?.selectedItem.currency ?? .EUR, to: distanceAdapter?.selectedItem.currency ?? .EUR, amount: sum ?? 0.0 )
-        sourceAdapter?.setNeedResetFields()
-        distanceAdapter?.setNeedResetFields()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isTranslucent = false 
+        self.navigationController?.navigationBar.isTranslucent = false
         self.sourceCurrencyList?.delegate = sourceAdapter
         self.sourceCurrencyList?.dataSource = sourceAdapter
         sourceAdapter?.delegate = self
@@ -69,15 +58,24 @@ class ExchangeVC: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    func setMenu() {
+        let menu = UIBarButtonItem(title: "Exchange", style: .plain, target: self, action: #selector(processExchange))
+        self.navigationItem.rightBarButtonItem = menu
+    }
+    
+    @objc func processExchange() {
+        let sum = sourceAdapter?.currentExchangeSum ?? 0.0
+        presenter?.makeExchange(amount: sum)
+    }
+    
 }
 
 extension ExchangeVC : ItemSelectedDelegate {
     func selectedItem(index: Int, tag: Int) {
         if tag == 1 {
-            distanceAdapter?.pairSelectedIndex = index
-            
+            presenter?.selectSource(index: index)
         } else {
-            sourceAdapter?.pairSelectedIndex = index
+            presenter?.selectDistance(index: index)
             
         }
         distanceCurrencyList?.reloadData()
@@ -85,28 +83,27 @@ extension ExchangeVC : ItemSelectedDelegate {
     }
     
     func valueChanged(value: Double) {
-        distanceAdapter?.selectedValue = String(format:"+%.2f",value)
-        distanceCurrencyList?.reloadData()
+        self.presenter?.changeAmount(amount: value)
     }
 }
 
 extension ExchangeVC : IExchangeView {
+    func setTitle(title: String) {
+        self.title = title
+    }
     
-    func loadData(items: [ExchangeItem]) {
+    func loadSourceData(items: [ExchangeCardItem]) {
         self.sourceAdapter?.updateItems(items: items)
-        self.distanceAdapter?.updateItems(items: items)
-        
         self.sourceCurrencyList?.reloadData()
+        
+    }
+    
+    func loadDistanceData(items:[ExchangeCardItem]) {
+        self.distanceAdapter?.updateItems(items: items)
         self.distanceCurrencyList?.reloadData()
     }
     
-    func showChanged(fromItem: ExchangeItem, toItem: ExchangeItem) {
-        
+    func showInfo(message: String) {
+        self.present(DialogHelper.shared.dialog(title: "", message: message), animated: true, completion: nil)
     }
-    
-    func updateSelected() {
-        //берем выбранные по индексам из адаптера и вызываем
-       // self.presenter?.makeExchange(from: <#T##Currency#>, to: <#T##Currency#>, amount: <#T##Double#>)
-    }
-    
 }

@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 struct BaseRate : Mappable, Codable {
-   
+    
     var base: Currency = .EUR //EURO
     var rates: [Currency:Double] = [Currency:Double]()
     var date:Date = Date()
@@ -28,5 +28,4 @@ struct BaseRate : Mappable, Codable {
             }
         }
     }
-    
 }
