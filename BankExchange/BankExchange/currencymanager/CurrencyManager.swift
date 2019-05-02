@@ -2,13 +2,15 @@
 //  CurrencyManager.swift
 //  BankExchange
 //
-//  Created by 1 on 28.04.2019.
+//  Created by azharkova on 28.04.2019.
 //  Copyright © 2019 azharkova. All rights reserved.
 //
 
 import Foundation
 
+//MARK: service for periodical request of rates 
 class CurrencyManager : ICurrencyManager {
+    private weak var currencyService = DI.serviceContainer.currencyService
     weak var delegate: CurrencyManagerDelegate?
     
     private var timer: Timer?
@@ -44,7 +46,7 @@ class CurrencyManager : ICurrencyManager {
     }
     
     @objc private func requestRate() {
-        CurrencyService().getCurrentRates { [weak self] (result: ContentResponse<BaseRate>) in
+       self.currencyService?.getCurrentRates { [weak self] (result: ContentResponse<BaseRate>) in
             if let data  = result.content {
                 self?._currentRateData = data
                 self?.delegate?.rateChanged()

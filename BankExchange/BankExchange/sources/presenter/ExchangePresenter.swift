@@ -2,7 +2,7 @@
 //  ExchangePresenter.swift
 //  BankExchange
 //
-//  Created by 1 on 29.04.2019.
+//  Created by azharkova on 29.04.2019.
 //  Copyright © 2019 azharkova. All rights reserved.
 //
 
@@ -28,7 +28,7 @@ class ExchangePresenter: IExchangePresenter {
         return presenter
     }
     
-    
+    //MARK: default data
     func setupDefault() {
         exchangeData = [ExchangeItem(currency: .EUR, amount: 100.0),
                         ExchangeItem(currency: .USD, amount: 100.0),
@@ -37,7 +37,25 @@ class ExchangePresenter: IExchangePresenter {
         prepareData()
     }
     
-    func prepareSource() {
+    func start() {
+        self.view?.loadSourceData(items: sourceData)
+        self.view?.loadDistanceData(items: distanceData)
+        currencyManager?.delegate = self
+        currencyManager?.start()
+    }
+    
+    func stop() {
+        currencyManager?.delegate = nil
+        currencyManager?.stop()
+    }
+    
+    func prepareData() {
+        prepareSource()
+        prepareDistance()
+        updateForRate()
+    }
+    
+    private  func prepareSource() {
         sourceData = [ExchangeCardItem]()
         for d in exchangeData {
             let item = ExchangeCardItem()
@@ -46,7 +64,7 @@ class ExchangePresenter: IExchangePresenter {
         }
     }
     
-    func prepareDistance() {
+    private func prepareDistance() {
         distanceData = [ExchangeCardItem]()
         for d in exchangeData {
             let item = ExchangeCardItem()
@@ -55,7 +73,8 @@ class ExchangePresenter: IExchangePresenter {
         }
     }
     
-    func updateForRate() {
+    //MARK: change data for current rates
+    private func updateForRate() {
         for s in sourceData {
             let rate = RateHelper.shared.rate(from: s.exchangeItem?.currency ?? .EUR, to: selectedDistance)
             s.currentRate = rate
@@ -76,28 +95,12 @@ class ExchangePresenter: IExchangePresenter {
         self.view?.setTitle(title: title)
     }
     
-    func prepareData() {
-        prepareSource()
-        prepareDistance()
-        updateForRate()
-    }
-    
-    func start() {
-        self.view?.loadSourceData(items: sourceData)
-        self.view?.loadDistanceData(items: distanceData)
-        currencyManager?.delegate = self
-        currencyManager?.start()
-    }
-    
-    func stop() {
-        currencyManager?.delegate = nil
-        currencyManager?.stop()
-    }
     
     func selectSource(index: Int) {
         self.selectedSource = exchangeData[index].currency
         updateForRate()
     }
+    
     func selectDistance(index: Int) {
         self.selectedDistance = exchangeData[index].currency
         updateForRate()
@@ -160,5 +163,4 @@ extension ExchangePresenter : CurrencyManagerDelegate {
         self.view?.loadSourceData(items: sourceData)
         self.view?.loadDistanceData(items: distanceData)
     }
-    
 }

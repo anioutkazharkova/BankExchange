@@ -2,15 +2,15 @@
 //  CurrencyService.swift
 //  BankExchange
 //
-//  Created by 1 on 28.04.2019.
+//  Created by azharkova on 28.04.2019.
 //  Copyright © 2019 azharkova. All rights reserved.
 //
 
 import Foundation
 
+//MARK: service for incapsulating network requests
 class CurrencyService: ICurrencyService {
      private weak var networkService = DI.container.networkService
-    
     
     func getCurrentRates(completion:@escaping(ContentResponse<BaseRate>)->Void) {
         let url = Requests.latest

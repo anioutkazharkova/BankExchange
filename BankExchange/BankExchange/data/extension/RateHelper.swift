@@ -2,18 +2,20 @@
 //  RateHelper.swift
 //  BankExchange
 //
-//  Created by 1 on 01.05.2019.
+//  Created by azharkova on 01.05.2019.
 //  Copyright © 2019 azharkova. All rights reserved.
 //
 
 import Foundation
 
+//MARK: helper to convert rate's values
 class RateHelper {
     private weak var currencyManager = DI.serviceContainer.currencyManager
     
     static   let shared = RateHelper()
     private init() {}
     
+    //MARK: default rates with euro
     func rateFromBase(currency: Currency) -> Double {
         if let rate = currencyManager?.currentRateData {
             if (currency == rate.base) {
@@ -25,6 +27,7 @@ class RateHelper {
         return 0.0
     }
     
+    //MARK: rates for 2 currencies, base on default rates
     func rate(from currency: Currency, to: Currency) -> Double {
         if currency == to {
             return 1.0 

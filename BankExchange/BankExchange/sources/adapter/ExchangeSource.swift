@@ -2,7 +2,7 @@
 //  ExchangeSource.swift
 //  BankExchange
 //
-//  Created by 1 on 01.05.2019.
+//  Created by azharkova on 01.05.2019.
 //  Copyright © 2019 azharkova. All rights reserved.
 //
 
@@ -16,14 +16,16 @@ protocol ItemSelectedDelegate : class {
 }
 
 class ExchangeSource : NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+    private var items = [ExchangeCardItem]()
+    weak var delegate: ItemSelectedDelegate?
     
     var tag: Int = 0
-    weak var delegate: ItemSelectedDelegate?
+    
     var currentExchangeSum:Double = 0.0
     var sourceMode:Bool = true
     
     var selectedIndex:Int = 0
-    var items = [ExchangeCardItem]()
+    
     
     func updateItems(items: [ExchangeCardItem]) {
         self.items = [ExchangeCardItem]()
@@ -35,9 +37,9 @@ class ExchangeSource : NSObject, UICollectionViewDelegate, UICollectionViewDataS
             return UICollectionViewCell()
         }
         let isSelected = indexPath.row == selectedIndex
-            cell.setEditMode(enabled: sourceMode)
+        cell.setEditMode(enabled: sourceMode)
         cell.setupItem(item: items[indexPath.row], isSelected: isSelected)
-    
+        
         cell.textDelegate  = isSelected ? self : nil
         
         return cell

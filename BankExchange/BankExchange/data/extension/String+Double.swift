@@ -2,7 +2,7 @@
 //  String+Double.swift
 //  BankExchange
 //
-//  Created by 1 on 02.05.2019.
+//  Created by azharkova on 02.05.2019.
 //  Copyright © 2019 azharkova. All rights reserved.
 //
 

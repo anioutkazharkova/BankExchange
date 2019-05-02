@@ -120,6 +120,32 @@
 			path = dialog;
 			sourceTree = "<group>";
 		};
+		639531A0227ADFA00046F381 /* customview */ = {
+			isa = PBXGroup;
+			children = (
+				63AE64AA22796DF900AFB493 /* CurrencyView.xib */,
+				63AE64AC22796E3200AFB493 /* CurrencyView.swift */,
+			);
+			path = customview;
+			sourceTree = "<group>";
+		};
+		639531A1227ADFB40046F381 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				63AE64B522797DCF00AFB493 /* ExchangeCell.swift */,
+				63AE64B622797DCF00AFB493 /* ExchangeCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		639531A2227AE11C0046F381 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				63953199227AA6710046F381 /* ExchangeCardItem.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		63AE64A4227812DB00AFB493 /* adapter */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +184,7 @@
 		63E7E9182275FC18007A9578 /* BankExchange */ = {
 			isa = PBXGroup;
 			children = (
+				639531A2227AE11C0046F381 /* model */,
 				6395319D227AD3360046F381 /* dialog */,
 				63E7E9732276161B007A9578 /* sources */,
 				63E7E951227603F0007A9578 /* di */,
@@ -181,7 +208,6 @@
 				63E7E93E2275FFEF007A9578 /* BaseRate.swift */,
 				63E7E9402276005D007A9578 /* Currency.swift */,
 				63E7E971227614D1007A9578 /* ExchangeItem.swift */,
-				63953199227AA6710046F381 /* ExchangeCardItem.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -256,6 +282,7 @@
 		63E7E9732276161B007A9578 /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				639531A0227ADFA00046F381 /* customview */,
 				63AE64A4227812DB00AFB493 /* adapter */,
 				63E7E97922761A48007A9578 /* view */,
 				63E7E97422761624007A9578 /* presenter */,
@@ -275,14 +302,11 @@
 		63E7E97922761A48007A9578 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				639531A1227ADFB40046F381 /* cell */,
 				63E7E97A22761A5E007A9578 /* ExchangeVC.swift */,
+				63AE64B122797BAF00AFB493 /* CardLineLayout.swift */,
 				63E7E97B22761A5E007A9578 /* ExchangeVC.xib */,
 				63E7E97E22761A71007A9578 /* IExchangeView.swift */,
-				63AE64AA22796DF900AFB493 /* CurrencyView.xib */,
-				63AE64AC22796E3200AFB493 /* CurrencyView.swift */,
-				63AE64B122797BAF00AFB493 /* CardLineLayout.swift */,
-				63AE64B522797DCF00AFB493 /* ExchangeCell.swift */,
-				63AE64B622797DCF00AFB493 /* ExchangeCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
