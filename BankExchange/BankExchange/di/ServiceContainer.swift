@@ -16,19 +16,19 @@ protocol IServiceContainer {
 class ServiceContainer: IServiceContainer {
     private var _currencyManager: ICurrencyManager?
     private var _currencyService: ICurrencyService?
-    
+
     var currencyManager: ICurrencyManager {
-       get   {
-            if (_currencyManager == nil){
+       get {
+            if (_currencyManager == nil) {
                 _currencyManager = CurrencyManager()
             }
             return _currencyManager!
         }
     }
-    
+
     var currencyService: ICurrencyService {
-        get   {
-            if (_currencyService == nil){
+        get {
+            if (_currencyService == nil) {
                 _currencyService = CurrencyService()
             }
             return _currencyService!

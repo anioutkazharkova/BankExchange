@@ -9,7 +9,7 @@ import UIKit
 import ObjectMapper
 
 // MARK: Error types
-enum ErrorType: String,Codable {
+enum ErrorType: String, Codable {
     case network, other
 }
 
@@ -18,9 +18,9 @@ class ContentResponse<T: Mappable&Codable> {
     var content: T?
     var error: ErrorResponse?
     var code: Int = 0
-    
+
     init() {}
-    
+
     convenience init(response: HTTPURLResponse, json: Any) {
         self.init()
         code = response.statusCode
@@ -30,7 +30,7 @@ class ContentResponse<T: Mappable&Codable> {
         }
         content = result
     }
-    
+
     convenience init(response: HTTPURLResponse, data: Data) {
         self.init()
         let jsonDecoder = JSONDecoder()
@@ -39,11 +39,10 @@ class ContentResponse<T: Mappable&Codable> {
             let result = try jsonDecoder.decode(T.self, from: data)
             content = result
             error = try jsonDecoder.decode(ErrorResponse.self, from: data)
-            
-        }
-        catch {}
+
+        } catch {}
     }
-    
+
     convenience init(error: ErrorResponse) {
         self.init()
         self.error = error

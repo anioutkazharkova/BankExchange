@@ -8,20 +8,20 @@
 
 import Foundation
 
-//MARK: model to wrap exchange item data
+// MARK: model to wrap exchange item data
 class ExchangeCardItem {
     var exchangeItem: ExchangeItem?
     var currentRate: Double = 1.0
-    var sumValue:String = ""
+    var sumValue: String = ""
     var pairCurrency: Currency = .EUR
-    
-    func rateInfo()->String {
+
+    func rateInfo() -> String {
         let symbol = (exchangeItem?.currency ?? .EUR).symbol
-        return "\(symbol)1 = \(pairCurrency.symbol)\(String(format:"%.2f",currentRate))"
+        return "\(symbol)1 = \(pairCurrency.symbol)\(String(format: "%.2f", currentRate))"
     }
-    
-    func amountInfo()->String {
+
+    func amountInfo() -> String {
         let symbol = (exchangeItem?.currency ?? .EUR).symbol
-        return "You have: \(symbol) \(String(format:"%.2f",exchangeItem?.amount ?? 0.0))"
+        return "You have: \(symbol) \(String(format: "%.2f", exchangeItem?.amount ?? 0.0))"
     }
 }

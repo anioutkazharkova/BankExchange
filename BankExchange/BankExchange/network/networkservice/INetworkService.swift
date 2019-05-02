@@ -8,11 +8,11 @@
 import Foundation
 
 protocol INetworkService: class {
-    func request<T:Codable>(url: String,
+    func request<T: Codable>(url: String,
     parameters: [String: Any],
     method: Methods,
     completion: @escaping (ContentResponse<T>) -> Void)
     var backgroundCompletionHandler: (() -> Void)? {get set}
     func restartManager(background: Bool)
-    func cancelAllRequests() 
+    func cancelAllRequests()
 }

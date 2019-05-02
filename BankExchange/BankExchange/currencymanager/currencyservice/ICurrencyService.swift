@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ICurrencyService : class{
-    func getCurrentRates(completion:@escaping(ContentResponse<BaseRate>)->Void)
+protocol ICurrencyService: class {
+    func getCurrentRates(completion:@escaping(ContentResponse<BaseRate>) -> Void)
 }

@@ -8,12 +8,12 @@
 
 import Foundation
 
-//MARK: service for incapsulating network requests
+// MARK: service for incapsulating network requests
 class CurrencyService: ICurrencyService {
      private weak var networkService = DI.container.networkService
-    
-    func getCurrentRates(completion:@escaping(ContentResponse<BaseRate>)->Void) {
+
+    func getCurrentRates(completion:@escaping(ContentResponse<BaseRate>) -> Void) {
         let url = Requests.latest
-        self.networkService?.request(url: url.rawValue, parameters: [:], method: .get,completion:  completion)
+        self.networkService?.request(url: url.rawValue, parameters: [:], method: .get, completion: completion)
     }
 }

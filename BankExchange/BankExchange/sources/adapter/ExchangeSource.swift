@@ -9,29 +9,28 @@
 import Foundation
 import UIKit
 
-protocol ItemSelectedDelegate : class {
+protocol ItemSelectedDelegate: class {
     func selectedItem(index: Int, tag: Int)
-    
+
     func valueChanged(value: Double)
 }
 
-class ExchangeSource : NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+class ExchangeSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
     private var items = [ExchangeCardItem]()
     weak var delegate: ItemSelectedDelegate?
-    
+
     var tag: Int = 0
-    
-    var currentExchangeSum:Double = 0.0
-    var sourceMode:Bool = true
-    
-    var selectedIndex:Int = 0
-    
-    
+
+    var currentExchangeSum: Double = 0.0
+    var sourceMode: Bool = true
+
+    var selectedIndex: Int = 0
+
     func updateItems(items: [ExchangeCardItem]) {
         self.items = [ExchangeCardItem]()
         self.items.append(contentsOf: items)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExchangeCell.cellId, for: indexPath) as? ExchangeCell else {
             return UICollectionViewCell()
@@ -39,40 +38,40 @@ class ExchangeSource : NSObject, UICollectionViewDelegate, UICollectionViewDataS
         let isSelected = indexPath.row == selectedIndex
         cell.setEditMode(enabled: sourceMode)
         cell.setupItem(item: items[indexPath.row], isSelected: isSelected)
-        
+
         cell.textDelegate  = isSelected ? self : nil
-        
+
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.row
         delegate?.selectedItem(index: indexPath.row, tag: tag)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
 }
 
-extension ExchangeSource : TextChangedDelegate{
+extension ExchangeSource: TextChangedDelegate {
     func textChanged(value: String) {
         guard !value.isEmpty else {
             return
         }
         self.currentExchangeSum = value.getAmount()
         if sourceMode {
-            delegate?.valueChanged(value:currentExchangeSum)
+            delegate?.valueChanged(value: currentExchangeSum)
         }
     }
 }
 
-extension ExchangeSource : UIScrollViewDelegate {
+extension ExchangeSource: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = scrollView.contentOffset.x/(UIScreen.main.bounds.width - 40)
         selectedIndex = Int(index)

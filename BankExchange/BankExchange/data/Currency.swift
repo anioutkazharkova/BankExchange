@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum Currency : String, Codable{
+enum Currency: String, Codable {
     case EUR, USD, GBP
-    
+
     var symbol: String {
         switch self {
         case .EUR:
@@ -22,4 +22,3 @@ enum Currency : String, Codable{
         }
     }
 }
-

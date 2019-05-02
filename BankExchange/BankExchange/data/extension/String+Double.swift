@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    func getFormatter()->NumberFormatter {
+    func getFormatter() -> NumberFormatter {
         let format = NumberFormatter.init()
         format.decimalSeparator = "."
         format.maximumFractionDigits = 2
@@ -17,13 +17,13 @@ extension String {
         format.plusSign = "+"
         return format
     }
-    
-    func getAmount()->Double {
+
+    func getAmount() -> Double {
         let valueString = self.replacingOccurrences(of: "-", with: "")
         return getFormatter().number(from: valueString)?.doubleValue ?? 0.0
     }
-    
-    func getValueString()->String {
-        return String(format:"-%d",Int(self.getAmount()))
+
+    func getValueString() -> String {
+        return String(format: "-%d", Int(self.getAmount()))
     }
 }

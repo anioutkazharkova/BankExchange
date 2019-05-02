@@ -12,8 +12,8 @@ import  UIKit
 class DialogHelper {
     static let shared = DialogHelper()
     private init() {}
-    
-    func dialog(title: String, message: String)->UIAlertController  {
+
+    func dialog(title: String, message: String) -> UIAlertController {
         let dialog = UIAlertController(title: title, message: message, preferredStyle: .alert)
         dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return dialog

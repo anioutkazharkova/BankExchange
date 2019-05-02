@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol IExchangeView :class {
-    
-    func loadSourceData(items:[ExchangeCardItem])
-    
-    func loadDistanceData(items:[ExchangeCardItem])
-    
+protocol IExchangeView: class {
+
+    func loadSourceData(items: [ExchangeCardItem])
+
+    func loadDistanceData(items: [ExchangeCardItem])
+
     func showInfo(message: String)
-    
+
     func setTitle(title: String)
 }

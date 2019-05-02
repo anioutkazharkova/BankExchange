@@ -8,17 +8,16 @@
 
 import Foundation
 
-protocol ICurrencyManager : class {
+protocol ICurrencyManager: class {
     var delegate: CurrencyManagerDelegate? {get set}
-    
+
     var currentRateData: BaseRate? {get}
-    
+
     func start()
-    
+
     func stop()
 }
 
-
-protocol CurrencyManagerDelegate : class {
+protocol CurrencyManagerDelegate: class {
     func rateChanged()
 }

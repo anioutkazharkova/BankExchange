@@ -9,17 +9,17 @@
 import Foundation
 import ObjectMapper
 
-struct BaseRate : Mappable, Codable {
-    
+struct BaseRate: Mappable, Codable {
+
     var base: Currency = .EUR //EURO
-    var rates: [Currency:Double] = [Currency:Double]()
-    var date:Date = Date()
-    
+    var rates: [Currency: Double] = [Currency:Double]()
+    var date: Date = Date()
+
     init?(map: Map) {}
-    
+
     mutating func mapping(map: Map) {
         var rawRates = [String:Double]()
-        
+
         base <- (map["base"], EnumTransform<Currency>())
         rawRates <- map["rates"]
         for (key, value) in rawRates {

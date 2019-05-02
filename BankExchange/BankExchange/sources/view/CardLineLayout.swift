@@ -13,7 +13,7 @@ class CardLineLayout: UICollectionViewFlowLayout {
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
-    
+
     override init() {
         super.init()
         initContent()
